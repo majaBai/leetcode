@@ -9,9 +9,6 @@ Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
 *
 *
 * */
-
-
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -71,6 +68,5 @@ public class MergeIntervals{
                 System.out.println(Arrays.toString(i));
             }
         }
-
     }
 }
