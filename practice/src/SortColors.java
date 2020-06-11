@@ -16,21 +16,43 @@ Could you come up with a one-pass algorithm using only constant space?
 import java.util.Arrays;
 
 public class SortColors{
+//counting sort
+//    public static void sortClr(int[] c){
+//        if(c.length!=0){
+//            int[] counting = new int[3];
+//            for(int i : c){
+//                counting[i]++;
+//            }
+//            int j = 0;
+//            for(int i = 0; i < counting.length; i++){
+//                int l = counting[i];
+//                while(l > 0) {
+//                    c[j] = i;
+//                    j++;
+//                    l--;
+//                }
+//            }
+//        }
+//    }
 
-    public static void sortClr(int[] c){
-        if(c.length!=0){
-            int[] counting = new int[3];
-            for(int i : c){
-                counting[i]++;
-            }
-            int j = 0;
-            for(int i = 0; i < counting.length; i++){
-                int l = counting[i];
-                while(l > 0) {
-                    c[j] = i;
-                    j++;
-                    l--;
-                }
+    public static void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public static void sortClr(int[] nums){
+        if(nums.length == 0) return;
+        int lt = 0, i = 0, gt = nums.length -1;
+        while(i <= gt){
+            if(nums[i] == 0 && i > lt){
+                swap(nums, i, lt);
+                lt++;
+            } else if(nums[i] == 2 && i < gt){
+                swap(nums, i, gt);
+                gt--;
+            } else {
+                i++;
             }
         }
     }
