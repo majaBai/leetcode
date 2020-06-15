@@ -4,7 +4,7 @@ import java.util.List;
  */
 public class InsertionSortList{
 
-    public ListNode insertion_sort (ListNode head){
+    public static ListNode insertion_sort (ListNode head){
         ListNode ordered = null;
         while(head != null){
             ListNode current = head;
@@ -14,7 +14,7 @@ public class InsertionSortList{
         return ordered;
     }
 
-    public ListNode insert(ListNode head, ListNode n){
+    public static ListNode insert(ListNode head, ListNode n){
         if(head == null || n.val <= head.val){
             n.next = head;
             return n;
@@ -28,7 +28,16 @@ public class InsertionSortList{
         return head;
     }
 
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
+        ListNode d = new ListNode(3);
+        ListNode c = new ListNode(1, d);
+        ListNode b = new ListNode(2, c);
+        ListNode a = new ListNode(4, b);
+        ListNode head = insertion_sort(a);
+        while(head != null){
+            System.out.print(head.val + " ");
+            head = head.next;
+        }
     }
+
 }
