@@ -48,9 +48,11 @@ public class SortColors{
             if(nums[i] == 0 && i > lt){
                 swap(nums, i, lt);
                 lt++;
+                while(nums[lt] == 0 && lt < gt) lt++;
             } else if(nums[i] == 2 && i < gt){
                 swap(nums, i, gt);
                 gt--;
+                while(nums[gt] == 2 && gt > lt) gt--;
             } else {
                 i++;
             }
@@ -67,6 +69,12 @@ public class SortColors{
         System.out.println("-------");
         {
             int[] c = {};
+            sortClr(c);
+            System.out.println(Arrays.toString(c));
+        }
+        System.out.println("-------");
+        {
+            int[] c = {0,0,0,2,1,2,2,0,1,2,2};
             sortClr(c);
             System.out.println(Arrays.toString(c));
         }
