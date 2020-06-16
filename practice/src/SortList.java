@@ -11,7 +11,10 @@ public class SortList {
 
         ListNode list1 = sortList(head);
         ListNode list2 = sortList(mid);
+        return merge_list(list1, list2);
+    }
 
+    public static ListNode merge_list(ListNode list1, ListNode list2){
         ListNode mergedList = new ListNode();
         ListNode mergeHead = mergedList;
 
