@@ -4,13 +4,34 @@ import java.util.List;
 * */
 public class SortList {
 
-    public static ListNode sortList(ListNode head){
-        if(head == null || head.next == null) return head;
+    public static int getLengthOfList(ListNode head){
+        int len = 0;
+        while(head != null){
+            len +=1;
+            head = head.next;
+        }
+        return len;
+    }
 
-        ListNode mid = getMidNode(head);
+    public static ListNode forward(ListNode n, int step){
+        int counter = 0;
+        while(counter < step-1){
+            n = n.next;
+            counter++;
+        }
+        ListNode mid = n.next;
+        n.next = null;
+        return mid;
+    }
 
-        ListNode list1 = sortList(head);
-        ListNode list2 = sortList(mid);
+    public static ListNode sortList(ListNode head, int len){
+        if(head == null || head.next == null|| len <= 1) return head;
+
+//        ListNode mid = getMidNode(head);
+        ListNode mid = forward(head, len/2);
+
+        ListNode list1 = sortList(head, len/2);
+        ListNode list2 = sortList(mid, len -len/2);
         return merge_list(list1, list2);
     }
 
@@ -54,7 +75,8 @@ public class SortList {
         ListNode c = new ListNode(1, d);
         ListNode b = new ListNode(2, c);
         ListNode a = new ListNode(4, b);
-        ListNode r = sortList(a);
+        int len = getLengthOfList(a);
+        ListNode r = sortList(a, len);
         while(r != null){
             System.out.print(r.val + " ");
             r = r.next;
