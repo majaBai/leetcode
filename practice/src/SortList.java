@@ -13,22 +13,24 @@ public class SortList {
         return len;
     }
 
-    public static ListNode forward(ListNode n, int step){
-        int counter = 0;
-        while(counter < step-1){
+    public static ListNode splitList(ListNode n, int step){
+        while(0 < --step){
             n = n.next;
-            counter++;
         }
         ListNode mid = n.next;
         n.next = null;
         return mid;
     }
 
-    public static ListNode sortList(ListNode head, int len){
-        if(head == null || head.next == null|| len <= 1) return head;
+    public static ListNode sortList(ListNode head){
+        int len = getLengthOfList(head);
+        return sortList(head, len);
+    }
 
-//        ListNode mid = getMidNode(head);
-        ListNode mid = forward(head, len/2);
+    public static ListNode sortList(ListNode head, int len){
+        if(len <= 1) return head;
+
+        ListNode mid = splitList(head, len/2);
 
         ListNode list1 = sortList(head, len/2);
         ListNode list2 = sortList(mid, len -len/2);
@@ -58,25 +60,12 @@ public class SortList {
         return mergedList.next;
     }
 
-    public static ListNode getMidNode(ListNode head){
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while(fast != null && fast.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        ListNode mid = slow.next;
-        slow.next = null;
-        return mid;
-    }
-
     public static void main(String[] args){
         ListNode d = new ListNode(3);
         ListNode c = new ListNode(1, d);
         ListNode b = new ListNode(2, c);
         ListNode a = new ListNode(4, b);
-        int len = getLengthOfList(a);
-        ListNode r = sortList(a, len);
+        ListNode r = sortList(a);
         while(r != null){
             System.out.print(r.val + " ");
             r = r.next;
