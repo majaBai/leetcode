@@ -31,6 +31,8 @@ Explanation: Given linked list is empty (null pointer), so return null.
 * */
 
 
+import java.util.HashMap;
+
 public class CopyListWithRandomPointer{
 
     public static Node solution(Node head){
@@ -68,6 +70,27 @@ public class CopyListWithRandomPointer{
             cur = cur.next;
         }
         return cloneHead.next;
+    }
+
+    public static Node solution2(Node head){
+        HashMap<Node, Node> map = new HashMap<Node, Node>();
+
+        Node curNode = head;
+
+        while(curNode != null){
+            map.put(curNode, new Node(curNode.val));
+            curNode = curNode.next;
+        }
+
+        curNode = head;
+
+        while(curNode != null){
+            map.get(curNode).next = map.get(curNode.next);
+            map.get(curNode).random = map.get(curNode.random);
+            curNode = curNode.next;
+        }
+
+        return map.get(head);
     }
     public static void main(String[] args){
 
