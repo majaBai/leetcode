@@ -32,6 +32,25 @@ public class LinkedListCycleII{
         return null;
     }
 
+// optimize space complexity
+    public static ListNode solution2(ListNode head){
+        if(head == null || head.next == null) return null; // no cycle
+        ListNode fast = head, slow = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(fast == slow){ // detect cycle
+                ListNode p = head;
+//       distance from head to cycle's begin = distance from slow pointer to cycle's begin
+                while(p != slow){
+                    p = p.next;
+                    slow = slow.next;
+                }
+                return slow;
+            }
+        }
+        return null; // no cycle
+    }
 
 
     public static void main(String[] args){
