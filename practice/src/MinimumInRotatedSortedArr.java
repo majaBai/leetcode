@@ -33,7 +33,31 @@ public class MinimumInRotatedSortedArr{
        return -1;
     }
 
-    public static void main(String[] args){
+    public static int solution2(int[] nums){
+        int lo = 0, hi = nums.length -1;
+        while(lo < hi){
+            int mid = (lo + hi) / 2;
+            if(nums[mid] < nums[hi]) hi = mid;
+            else lo = mid + 1;
+        }
+        return nums[hi];
+    }
 
+    public static void main(String[] args){
+        {
+            int[] nums = {3, 4, 5, 1, 2};
+            int r = solution2(nums);
+            System.out.println(r);
+        }
+        {
+            int[] nums = {7};
+            int r = solution2(nums);
+            System.out.println(r);
+        }
+        {
+            int[] nums = {3,4, 5};
+            int r = solution2(nums);
+            System.out.println(r);
+        }
     }
 }
